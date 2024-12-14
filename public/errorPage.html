@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error {{.StatusCode}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/errorPage.css">
+</head>
+<body>
+    <div class="error-container">
+        <svg class="error-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle class="error-circle" cx="50" cy="50" r="45"/>
+            <text class="error-details" x="50" y="65" text-anchor="middle" font-size="60" fill="#fec601">!</text>
+        </svg>
+        <h1>Error {{.StatusCode}}: {{.ErrMsg}}</h1>
+        <p>We apologize for the inconvenience. Please try again later or return to the homepage.</p>
+        <a href="/" class="back-btn">Back to Homepage</a>
+    </div>
+</body>
+</html>
