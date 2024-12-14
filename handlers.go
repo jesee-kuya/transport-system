@@ -8,7 +8,7 @@ import (
 	"text/template"
 )
 
-func handleAuth(w http.ResponseWriter, r *http.Request) {
+func HandleAuth(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		tmpl, err := template.ParseFiles("public/authentication.html")
 		if err != nil {
