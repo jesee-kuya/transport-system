@@ -127,3 +127,36 @@ window.addEventListener('resize', () => {
         sidebar.classList.remove('active');
     }
 });
+
+// Add event listeners for form submission
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Profile updated successfully!');
+});
+
+// Add event listeners for navigation
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+
+// Mobile menu functionality
+const menuBtn = document.querySelector('.menu-btn');
+//const sidebar = document.querySelector('.sidebar');
+
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768 && 
+        !sidebar.contains(e.target) && 
+        !menuBtn.contains(e.target) && 
+        sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+    }
+});
