@@ -24,10 +24,10 @@ func main() {
 	fileServer := http.FileServer(http.Dir(staticDir))
 	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
 
-	http.HandleFunc("/", handleHome)
-	http.HandleFunc("/auth", handleAuth)
-	http.HandleFunc("/schooldashboard", handleDashboardSchool)
-	http.HandleFunc("/parentsdashboard", handleDashboardParents)
+	http.HandleFunc("/", HandleHome)
+	http.HandleFunc("/auth", HandleAuth)
+	http.HandleFunc("/schooldashboard", HandleDashboardSchool)
+	http.HandleFunc("/parentsdashboard", HandleDashboardParents)
 	
 	log.Println("Server is running on http://localhost:8000")
 	log.Fatal(http.ListenAndServe(":8000", nil))
