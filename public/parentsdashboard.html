@@ -7,6 +7,28 @@
     <title>Parent Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/parentdashboard.css">
+    <style>
+        /* Custom alert styling */
+        .custom-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            max-width: 300px;
+            width: calc(100% - 40px);
+            background: #003049;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .custom-alert.show {
+            transform: translateX(0);
+        }
+    </style>
 </head>
 
 <body>
@@ -62,7 +84,8 @@
                 <li>
                     <a href="/?" class="out">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16,13V11H7V9H16V7L20,12L16,17M14,2C15.11,2 16,2.9 16,4V8H14V4H6V20H14V16H16V20C16,21.11 15.11,22 14,22H6C4.9,22 4,21.11 4,20V4C4,2.9 4.9,2 6,2H14Z" />
+                            <path
+                                d="M16,13V11H7V9H16V7L20,12L16,17M14,2C15.11,2 16,2.9 16,4V8H14V4H6V20H14V16H16V20C16,21.11 15.11,22 14,22H6C4.9,22 4,21.11 4,20V4C4,2.9 4.9,2 6,2H14Z" />
                         </svg>
                         sign out
                     </a>
@@ -106,6 +129,26 @@
                     <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
                     <link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
                     <script>
+                        function showCustomAlert(message) {
+                            // Create the alert element
+                            const alert = document.createElement('div');
+                            alert.className = 'custom-alert';
+                            alert.innerText = message;
+
+                            // Append it to the body
+                            document.body.appendChild(alert);
+
+                            // Show the alert
+                            setTimeout(() => {
+                                alert.classList.add('show');
+                            }, 10);
+
+                            // Hide and remove the alert after 3 seconds
+                            setTimeout(() => {
+                                alert.classList.remove('show');
+                                setTimeout(() => alert.remove(), 300);
+                            }, 3000);
+                        }
                         // Initialize HERE Platform
                         const platform = new H.service.Platform({
                             apikey: 'iYGPG2aN0ZDx6NBCHsBPsk10Pkrl8WqUhYN2rWDGOb4' // Replace with your HERE Maps API Key
@@ -203,9 +246,9 @@
                             function moveBus() {
                                 if (index < busRoute.length) {
                                     if (index === 0) {
-                                        alert("The student's journey has began")
-                                    } else if (index === busRoute.length - 1 ) {
-                                        alert("The students has arrived at the pick-up station")
+                                        showCustomAlert("The student's journey has begun!");
+                                    } else if (index === busRoute.length - 1) {
+                                        showCustomAlert("The student's journey has ended!");
                                     }
                                     const position = busRoute[index];
                                     marker.setGeometry(position); // Update marker position
