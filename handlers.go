@@ -8,6 +8,12 @@ import (
 	"text/template"
 )
 
+// ErrorModel defines the structure for error data to pass to the template
+type ErrorModel struct {
+	ErrMsg     string
+	StatusCode int
+}
+
 func handleAuth(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		tmpl, err := template.ParseFiles("public/authentication.html")
@@ -18,7 +24,7 @@ func handleAuth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method != http.MethodPost {
-		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		HandleError(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -27,7 +33,7 @@ func handleAuth(w http.ResponseWriter, r *http.Request) {
 	userType := r.FormValue("userType") // "school" or "parent"
 
 	if action == "" || userType == "" {
-		http.Error(w, "Missing form action or user type", http.StatusBadRequest)
+		HandleError(w, "Missing form action or user type", http.StatusBadRequest)
 		return
 	}
 
@@ -37,7 +43,7 @@ func handleAuth(w http.ResponseWriter, r *http.Request) {
 	case "signup":
 		handleSignup(w, r, userType)
 	default:
-		http.Error(w, "Invalid action", http.StatusBadRequest)
+		HandleError(w, "Invalid action", http.StatusBadRequest)
 	}
 }
 
@@ -57,12 +63,12 @@ func handleLogin(w http.ResponseWriter, r *http.Request, userType string) {
 		email = r.FormValue("parentEmail")
 		password = r.FormValue("parentPassword")
 	} else {
-		http.Error(w, "Invalid user type", http.StatusBadRequest)
+		HandleError(w, "Invalid user type", http.StatusBadRequest)
 		return
 	}
 	exist, err := userModel.CheckCredentials(email, password, userType)
 	if err != nil {
-		http.Error(w, "Error checking creddentials", http.StatusInternalServerError)
+		HandleError(w, "Error checking creddentials", http.StatusInternalServerError)
 		return
 	}
 	if exist {
@@ -74,7 +80,7 @@ func handleLogin(w http.ResponseWriter, r *http.Request, userType string) {
 			return
 		}
 	} else {
-		http.Error(w, "Wrong username or password", http.StatusBadRequest)
+		HandleError(w, "Wrong username or password", http.StatusBadRequest)
 		return
 	}
 }
@@ -94,7 +100,7 @@ func handleSignup(w http.ResponseWriter, r *http.Request, userType string) {
 		confirmPassword := r.FormValue("signupSchoolConfirmPassword")
 
 		if password != confirmPassword {
-			http.Error(w, "Passwords do not match", http.StatusBadRequest)
+			HandleError(w, "Passwords do not match", http.StatusBadRequest)
 			return
 		}
 		success, err := userModel.InsertSchool(schoolName, email, password)
@@ -123,7 +129,7 @@ func handleSignup(w http.ResponseWriter, r *http.Request, userType string) {
 		}
 		success, err := userModel.InsertParent(fullName, email, school, childAdmissionNumber, password)
 		if err != nil {
-			http.Error(w, "error inserting entry", http.StatusInternalServerError)
+			HandleError(w, "error inserting entry", http.StatusInternalServerError)
 		}
 		if success {
 			http.Redirect(w, r, "/parentsdashboard", http.StatusSeeOther)
@@ -133,7 +139,7 @@ func handleSignup(w http.ResponseWriter, r *http.Request, userType string) {
 		log.Printf("Signup Attempt: FullName=%s, Email=%s, School=%s, ChildAdmission=%s", fullName, email, school, childAdmissionNumber)
 		// fmt.Fprintf(w, "Parent Signup Successful for %s", fullName)
 	} else {
-		http.Error(w, "Invalid user type", http.StatusBadRequest)
+		HandleError(w, "Invalid user type", http.StatusBadRequest)
 		return
 	}
 }
@@ -168,4 +174,30 @@ func handleBoarding(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	tmpl.Execute(w, nil)
+}
+
+// HandleError is a utility to handle errors and render a dynamic error page
+func HandleError(w http.ResponseWriter, errMsg string, statusCode int) {
+	// Set response headers
+	w.Header().Set("Content-Type", "text/html")
+	w.WriteHeader(statusCode)
+
+	tmpl, err := template.ParseFiles("public/errorPage.html")
+	if err != nil {
+		log.Printf("Error parsing template: %v\n", err)
+		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	// Create the error model with details
+	errorData := ErrorModel{
+		ErrMsg:     errMsg,
+		StatusCode: statusCode,
+	}
+
+	// Execute the template and write it to the response
+	if err := tmpl.Execute(w, errorData); err != nil {
+		log.Printf("Error executing template: %v\n", err)
+		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+	}
 }
