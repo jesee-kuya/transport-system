@@ -213,16 +213,31 @@
             map.addObject(marker);
 
             const busRoute = [
-                                { lat: -0.07716025026254243, lng: 34.80823046906589 },  // Nearby location 1
-                                { lat: -0.07823193069646567, lng: 34.80823046906589 },  // Nearby location 2
-                                { lat: -0.07990666468509545, lng: 34.80946271573191 },
-                                { lat: -0.08174196368909588, lng: 34.81029168167089 },
-                                { lat: -0.08326360015399889, lng: 34.81123267003404 },
-                                { lat: -0.08269602092258577, lng: 34.81224087185167 },
-                                { lat: -0.0807225613373807, lng: 34.81333869160865 },
-                            ];
+                { lat: -0.07716025026254243, lng: 34.80823046906589 },  // Nearby location 1
+                { lat: -0.07823193069646567, lng: 34.80823046906589 },  // Nearby location 2
+                { lat: -0.07990666468509545, lng: 34.80946271573191 },
+                { lat: -0.08174196368909588, lng: 34.81029168167089 },
+                { lat: -0.08326360015399889, lng: 34.81123267003404 },
+                { lat: -0.08269602092258577, lng: 34.81224087185167 },
+                { lat: -0.0807225613373807, lng: 34.81333869160865 },
+            ];
 
+            // Add a marker for the bus
+            map.addObject(marker);
 
+            // Function to simulate movement along the route
+            let index = 0;
+            function moveBus() {
+                if (index < busRoute.length) {
+                    const position = busRoute[index];
+                    marker.setGeometry(position); // Update marker position
+                    map.setCenter(position); // Center the map on the marker
+                    index++;
+                    setTimeout(moveBus, 1000); // Adjust interval for speed
+                }
+            }
+
+            moveBus(); // Start movement simulation
 
 
             // Resize map on window resize
