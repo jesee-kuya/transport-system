@@ -76,7 +76,8 @@ body {
     background-repeat: no-repeat;
     padding: 8rem 5% 5rem;
     text-align: center;
-    color: white; /
+    color: white;
+    height: 100vh;
 }
 
 .hero::before {
