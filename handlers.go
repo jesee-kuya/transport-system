@@ -103,10 +103,9 @@ func handleSignup(w http.ResponseWriter, r *http.Request, userType string) {
 			return
 		}
 		if success {
-				http.Redirect(w, r, "/schooldashboard", http.StatusSeeOther)
-				return
+			http.Redirect(w, r, "/schooldashboard", http.StatusSeeOther)
+			return
 		}
-		
 
 		log.Printf("Signup Attempt: SchoolName=%s, Email=%s, Password=%s", schoolName, email, password)
 		// fmt.Fprintf(w, "School Signup Successful for %s", schoolName)
@@ -129,7 +128,7 @@ func handleSignup(w http.ResponseWriter, r *http.Request, userType string) {
 		if success {
 			http.Redirect(w, r, "/parentsdashboard", http.StatusSeeOther)
 			return
-	}
+		}
 
 		log.Printf("Signup Attempt: FullName=%s, Email=%s, School=%s, ChildAdmission=%s", fullName, email, school, childAdmissionNumber)
 		// fmt.Fprintf(w, "Parent Signup Successful for %s", fullName)
@@ -146,6 +145,7 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	}
 	tmpl.Execute(w, nil)
 }
+
 func handleDashboardParents(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("public/parentsdashboard.html")
 	if err != nil {
@@ -153,6 +153,7 @@ func handleDashboardParents(w http.ResponseWriter, r *http.Request) {
 	}
 	tmpl.Execute(w, nil)
 }
+
 func handleDashboardSchool(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("public/schooldashboard.html")
 	if err != nil {
