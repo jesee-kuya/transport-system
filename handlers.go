@@ -41,7 +41,7 @@ func HandleAuth(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func handleLogin(w http.ResponseWriter, r *http.Request, userType string) {
+func HandleLogin(w http.ResponseWriter, r *http.Request, userType string) {
 	db, err := sql.Open("sqlite", "./transport.db")
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
@@ -79,7 +79,7 @@ func handleLogin(w http.ResponseWriter, r *http.Request, userType string) {
 	}
 }
 
-func handleSignup(w http.ResponseWriter, r *http.Request, userType string) {
+func HandleSignup(w http.ResponseWriter, r *http.Request, userType string) {
 	db, err := sql.Open("sqlite", "./transport.db")
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
@@ -139,21 +139,21 @@ func handleSignup(w http.ResponseWriter, r *http.Request, userType string) {
 	}
 }
 
-func handleHome(w http.ResponseWriter, r *http.Request) {
+func HandleHome(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("public/index.html")
 	if err != nil {
 		fmt.Println(err)
 	}
 	tmpl.Execute(w, nil)
 }
-func handleDashboardParents(w http.ResponseWriter, r *http.Request) {
+func HandleDashboardParents(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("public/parentsdashboard.html")
 	if err != nil {
 		fmt.Println(err)
 	}
 	tmpl.Execute(w, nil)
 }
-func handleDashboardSchool(w http.ResponseWriter, r *http.Request) {
+func HandleDashboardSchool(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("public/schooldashboard.html")
 	if err != nil {
 		fmt.Println(err)
