@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Error Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../static/error.css">
+
+</head>
+<body>
+    <div class="error-container">
+        <svg class="error-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle class="error-circle" cx="50" cy="50" r="45"/>
+            <text class="error-details" x="50" y="65" text-anchor="middle" font-size="60" fill="#fec601">!</text>
+        </svg>
+        <h1>Oops! Something went wrong</h1>
+        <p>We apologize for the inconvenience. The page you're looking for might be temporarily unavailable or may have been moved. Please try again later or return to the homepage.</p>
+        <a href="/" class="back-btn">Back to Homepage</a>
+    </div>
+
+    <script>
+        // Error reporting functionality
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.log('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo + '\nColumn: ' + columnNo + '\nError object: ' + JSON.stringify(error));
+            return false;
+        };
+    </script>
+</body></html>
