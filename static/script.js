@@ -127,3 +127,105 @@ window.addEventListener('resize', () => {
         sidebar.classList.remove('active');
     }
 });
+
+// Add event listeners for form submission
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Profile updated successfully!');
+});
+
+// Add event listeners for navigation
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+
+// Mobile menu functionality
+const menuBtn = document.querySelector('.menu-btn');
+//const sidebar = document.querySelector('.sidebar');
+
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768 && 
+        !sidebar.contains(e.target) && 
+        !menuBtn.contains(e.target) && 
+        sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+    }
+});
+
+
+// Search functionality
+const searchInput = document.querySelector('input[type="text"]');
+const tableRows = document.querySelectorAll('tbody tr');
+//const mapContainer = document.querySelector('.map-container');
+
+// Initialize map section
+mapContainer.style.display = 'none';
+const mapSection = document.querySelector('.section:nth-child(4)'); 
+mapSection.style.display = 'none';
+
+searchInput.addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    tableRows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(searchTerm) ? '' : 'none';
+    });
+});
+
+// Navigation active state
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+
+// Bus selection functionality - Fixed selector
+const busTable = document.querySelector('.section:nth-child(3) table'); 
+if (busTable) { 
+    busTable.querySelectorAll('tbody tr').forEach(row => {
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', function() {
+            // Remove active class from all rows
+            busTable.querySelectorAll('tbody tr').forEach(r => {
+                r.classList.remove('selected-bus');
+            });
+            
+            // Add active class to clicked row
+            this.classList.add('selected-bus');
+            
+            // Show map section
+            mapSection.style.display = 'block';
+            mapContainer.style.display = 'flex';
+            
+            // Scroll to map
+            mapSection.scrollIntoView({ behavior: 'smooth' });
+
+            // Get bus details
+            const busId = this.querySelector('td:first-child').textContent;
+            const route = this.querySelector('td:nth-child(3)').textContent;
+            
+            // Update map container with bus info
+            mapContainer.innerHTML = `
+                <div class="map-info">
+                    <h3>Live Location</h3>
+                    <p>Bus: ${busId}</p>
+                    <p>Route: ${route}</p>
+                    <div class="map-placeholder">
+                        Interactive map will be displayed here showing the location of ${busId}
+                    </div>
+                </div>
+            `;
+        });
+    });
+}

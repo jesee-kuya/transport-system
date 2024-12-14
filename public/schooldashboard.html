@@ -1,11 +1,18 @@
-<html><head><base href="." />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>School Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="../static/schooldashboard.css">
     </head>
     <body>
+        <button class="toggle-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+            </svg>
+        </button>
         <div class="dashboard">
             <div class="sidebar">
                 <div class="school-profile">
@@ -231,6 +238,30 @@
                     });
                 });
             }
+    
+            // Sidebar toggle functionality
+            const toggleBtn = document.querySelector('.toggle-btn');
+            const sidebar = document.querySelector('.sidebar');
+    
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+    
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+    
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
         </script>
     </body>
     </html>
