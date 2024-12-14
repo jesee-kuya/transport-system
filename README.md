@@ -83,6 +83,7 @@ This project is licensed under the MIT License.
 - [bernotieno](https://github.com/bernotieno)
 - [Wambita](https://github.com/Wambita)
 - [JosephOkumu](https://github.com/JosephOkumu)
+- [jesse-kuya](https://github.com/jesee-kuya)
 
 ## Acknowledgements
 Special thanks to the [SQLite](https://sqlite.org/), [Go](https://go.dev/), and [HTML/CSS/JS] communities for their resources and support.
