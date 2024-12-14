@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/auth.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="signup">Sign Up</button>
+        </div>
+
+        <!-- Login Section -->
+        <div class="tab-content active" id="loginContent">
+            <div class="toggle-buttons">
+                <button class="toggle-btn active" data-form="schoolLogin">School</button>
+                <button class="toggle-btn" data-form="parentLogin">Parent</button>
+            </div>
+
+            <!-- School Login Form -->
+            
+            <div class="form-section active" id="schoolLoginForm">
+                <form action="/auth" method="POST">
+                    <input type="hidden" name="action" value="login">
+                    <input type="hidden" name="userType" value="school">
+                    <div class="form-group">
+                        <label for="schoolEmail">School Email</label>
+                        <input type="email" id="schoolEmail" name="schoolEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolPassword">Password</label>
+                        <input type="password" id="schoolPassword" name="schoolPassword" required>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Login as School</button>
+                </form>
+            </div>
+
+            <!-- Parent Login Form -->
+            <div class="form-section" id="parentLoginForm">
+                <form action="/auth" method="POST">
+                    <input type="hidden" name="action" value="login">
+                    <input type="hidden" name="userType" value="parent">
+                    <div class="form-group">
+                        <label for="parentEmail">Email Address</label>
+                        <input type="email" id="parentEmail" name="parentEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentPassword">Password</label>
+                        <input type="password" id="parentPassword" name="parentPassword" required>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Login as Parent</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sign Up Section -->
+        <div class="tab-content" id="signupContent">
+            <div class="toggle-buttons">
+                <button class="toggle-btn active" data-form="school">School</button>
+                <button class="toggle-btn" data-form="parent">Parent</button>
+            </div>
+
+            <!-- School Signup Form -->
+            <div class="form-section active" id="schoolForm">
+                <form action="/auth" method="POST">
+                    <input type="hidden" name="action" value="signup">
+                    <input type="hidden" name="userType" value="school">
+                    <div class="form-group">
+                        <label for="schoolName">School Name</label>
+                        <input type="text" id="schoolName" name="schoolName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupSchoolEmail">Email</label>
+                        <input type="email" id="signupSchoolEmail" name="signupSchoolEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupSchoolPassword">Password</label>
+                        <input type="password" id="signupSchoolPassword" name="signupSchoolPassword"required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupSchoolConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupSchoolConfirmPassword" name="signupSchoolConfirmPassword" required>
+                    </div>
+                    <button type="submit">Register School</button>
+                </form>
+            </div>
+
+            <!-- Parent Signup Form -->
+            <div class="form-section" id="parentForm">
+                <form action="/auth" method="POST">
+                    <input type="hidden" name="action" value="signup">
+                    <input type="hidden" name="userType" value="parent">
+                    <div class="form-group">
+                        <label for="parentFullName">Full Name</label>
+                        <input type="text" id="parentFullName" name="parentFullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentSignupEmail">Email Address</label>
+                        <input type="email" id="parentSignupEmail" name="parentSignupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentSchool">School</label>
+                        <input type="text" id="parentSchool" name="parentSchool" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="childAdmissionNumber">Child Admission Number</label>
+                        <input type="text" id="childAdmissionNumber" name="childAdmissionNumber"required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupParentPassword">Password</label>
+                        <input type="password" id="signupParentPassword" name="signupParentPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupParentConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupParentConfirmPassword"  name="signupParentConfirmPassword" required>
+                    </div>
+                    <button type="submit">Register as Parent</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>
