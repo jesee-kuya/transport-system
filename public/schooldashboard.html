@@ -1,12 +1,18 @@
-<html><head><base href="." />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>School Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/style.css ">
-    
+    <link rel="stylesheet" href="../static/schooldashboard.css">
     </head>
     <body>
+        <button class="toggle-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+            </svg>
+        </button>
         <div class="dashboard">
             <div class="sidebar">
                 <div class="school-profile">
@@ -163,7 +169,99 @@
                 </div>
             </div>
         </div>
-    <script src="../static/script.js">
-    </script>
+    
+        <script>
+            // Search functionality
+            const searchInput = document.querySelector('input[type="text"]');
+            const tableRows = document.querySelectorAll('tbody tr');
+            const mapContainer = document.querySelector('.map-container');
+    
+            // Initialize map section
+            mapContainer.style.display = 'none';
+            const mapSection = document.querySelector('.section:nth-child(4)'); 
+            mapSection.style.display = 'none';
+    
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                tableRows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+    
+            // Navigation active state
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+    
+            // Bus selection functionality - Fixed selector
+            const busTable = document.querySelector('.section:nth-child(3) table'); 
+            if (busTable) { 
+                busTable.querySelectorAll('tbody tr').forEach(row => {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', function() {
+                        // Remove active class from all rows
+                        busTable.querySelectorAll('tbody tr').forEach(r => {
+                            r.classList.remove('selected-bus');
+                        });
+                        
+                        // Add active class to clicked row
+                        this.classList.add('selected-bus');
+                        
+                        // Show map section
+                        mapSection.style.display = 'block';
+                        mapContainer.style.display = 'flex';
+                        
+                        // Scroll to map
+                        mapSection.scrollIntoView({ behavior: 'smooth' });
+    
+                        // Get bus details
+                        const busId = this.querySelector('td:first-child').textContent;
+                        const route = this.querySelector('td:nth-child(3)').textContent;
+                        
+                        // Update map container with bus info
+                        mapContainer.innerHTML = `
+                            <div class="map-info">
+                                <h3>Live Location</h3>
+                                <p>Bus: ${busId}</p>
+                                <p>Route: ${route}</p>
+                                <div class="map-placeholder">
+                                    Interactive map will be displayed here showing the location of ${busId}
+                                </div>
+                            </div>
+                        `;
+                    });
+                });
+            }
+    
+            // Sidebar toggle functionality
+            const toggleBtn = document.querySelector('.toggle-btn');
+            const sidebar = document.querySelector('.sidebar');
+    
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+    
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+    
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        </script>
     </body>
     </html>
