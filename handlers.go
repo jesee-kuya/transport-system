@@ -160,3 +160,11 @@ func handleDashboardSchool(w http.ResponseWriter, r *http.Request) {
 	}
 	tmpl.Execute(w, nil)
 }
+
+func handleBoarding(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("public/boarding.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+	tmpl.Execute(w, nil)
+}
