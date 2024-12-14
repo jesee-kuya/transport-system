@@ -59,7 +59,10 @@
    ```
 
 5. Frontend setup:
-   - Open the `index.html` file in your browser.
+   - Open the port provided in the terminal in your browser using local host `http://localhost:PORT`
+
+   OR
+You can view the deployed website on this link [HakikaRide](https://hakikaride.onrender.com/)   
 
 6. Test the application:
    - Use the browser-based frontend to interact with the system.
