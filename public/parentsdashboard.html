@@ -202,6 +202,11 @@
                             let index = 0;
                             function moveBus() {
                                 if (index < busRoute.length) {
+                                    if (index === 0) {
+                                        alert("The student's journey has began")
+                                    } else if (index === busRoute.length - 1 ) {
+                                        alert("The students has arrived at the pick-up station")
+                                    }
                                     const position = busRoute[index];
                                     marker.setGeometry(position); // Update marker position
                                     map.setCenter(position); // Center the map on the marker
