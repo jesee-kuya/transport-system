@@ -1,0 +1,104 @@
+<html>
+<head><base href="." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Journey Tracking</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../static/style.css">
+
+</style>
+</head>
+<body>
+    <div class="dashboard">
+        <button class="menu-toggle" id="menuToggle">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+            </svg>
+        </button>
+        <div class="sidebar">
+            <div class="school-profile">
+                <div class="school-logo">S</div>
+                <h3>Springfield High</h3>
+                <p>admin@springfield.edu</p>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#" class="active">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M3,13H11V3H3V13M3,21H11V15H3V21M13,21H21V11H13V21M13,3V9H21V3H13V3Z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M18,11H14V9H16V7H14V5H18M16,1A7,7 0 0,1 23,8A7,7 0 0,1 16,15C15.5,15 15,14.9 14.6,14.8L8,20.4L6.6,19L13.2,12.4C13.1,12 13,11.5 13,11A7,7 0 0,1 20,4A7,7 0 0,1 16,1M16,3A5,5 0 0,0 11,8A5,5 0 0,0 16,13A5,5 0 0,0 21,8A5,5 0 0,0 16,3M2,20V22H12V20H2Z"/>
+                        </svg>
+                        Buses & Routes
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+                        </svg>
+                        Tracking
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                        </svg>
+                        Students
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="journey-header">
+                <h2>Morning Journey - Route A</h2>
+                <div class="journey-info">
+                    <div class="journey-stat">
+                        <h3>Total Students</h3>
+                        <p>15</p>
+                    </div>
+                    <div class="journey-stat">
+                        <h3>Checked In</h3>
+                        <p id="checkedCount">0</p>
+                    </div>
+                    <div class="journey-stat">
+                        <h3>Remaining</h3>
+                        <p id="remainingCount">15</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="student-list">
+                <h3>Student Check-in</h3>
+                <div id="studentItems">
+                    <!-- Students will be dynamically added here -->
+                </div>
+                <button id="startJourney" class="start-journey-btn" disabled>
+                    Start Journey
+                </button>
+            </div>
+
+            <div class="map-container" id="mapContainer">
+                <!-- Map will be displayed here when journey starts -->
+                <div style="text-align: center; padding: 2rem;">
+                    Live tracking map will be displayed here
+                </div>
+            </div>
+
+            <div class="notification" id="notification">
+                <!-- Notifications will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+
+</body>
+</html>
