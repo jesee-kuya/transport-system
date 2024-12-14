@@ -26,7 +26,6 @@ func port() int16 {
 }
 
 func main() {
-
 	port := port()
 	db, err := sql.Open("sqlite", "./transport.db")
 	if err != nil {
@@ -46,6 +45,7 @@ func main() {
 	http.HandleFunc("/auth", handleAuth)
 	http.HandleFunc("/schooldashboard", handleDashboardSchool)
 	http.HandleFunc("/parentsdashboard", handleDashboardParents)
+	http.HandleFunc("/boarding", handleDashboardParents)
 
 	p := fmt.Sprintf(":%d", port)
 	fmt.Println("Server started at ", p)
