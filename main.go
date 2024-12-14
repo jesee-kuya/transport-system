@@ -45,7 +45,7 @@ func main() {
 	http.HandleFunc("/auth", handleAuth)
 	http.HandleFunc("/schooldashboard", handleDashboardSchool)
 	http.HandleFunc("/parentsdashboard", handleDashboardParents)
-	http.HandleFunc("/boarding", handleDashboardParents)
+	http.HandleFunc("/boarding", handleBoarding)
 
 	p := fmt.Sprintf(":%d", port)
 	fmt.Println("Server started at ", p)
