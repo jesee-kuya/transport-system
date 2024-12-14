@@ -1,267 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>School Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/schooldashboard.css">
-    </head>
-    <body>
-        <button class="toggle-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
-            </svg>
-        </button>
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="school-profile">
-                    <div class="school-logo">S</div>
-                    <h3>Springfield High</h3>
-                    <p>admin@springfield.edu</p>
-                </div>
-                <ul class="nav-links">
-                    <li>
-                        <a href="#" class="active">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                <path d="M3,13H11V3H3V13M3,21H11V15H3V21M13,21H21V11H13V21M13,3V9H21V3H13V3Z"/>
-                            </svg>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                <path d="M18,11H14V9H16V7H14V5H18M16,1A7,7 0 0,1 23,8A7,7 0 0,1 16,15C15.5,15 15,14.9 14.6,14.8L8,20.4L6.6,19L13.2,12.4C13.1,12 13,11.5 13,11A7,7 0 0,1 20,4A7,7 0 0,1 16,1M16,3A5,5 0 0,0 11,8A5,5 0 0,0 16,13A5,5 0 0,0 21,8A5,5 0 0,0 16,3M2,20V22H12V20H2Z"/>
-                            </svg>
-                            Buses & Routes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
-                            </svg>
-                            Tracking
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                            </svg>
-                            Students
-                        </a>
-                    </li>
-                </ul>
+</head>
+
+<body>
+    <button class="toggle-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+        </svg>
+    </button>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="school-profile">
+                <div class="school-logo">S</div>
+                <h3>Springfield High</h3>
+                <p>admin@springfield.edu</p>
             </div>
-            <div class="main-content">
-                <div class="header">
-                    <h1>School Dashboard</h1>
-                    <div class="search-container">
-                        <input type="text" placeholder="Search buses, routes, students...">
+            <ul class="nav-links">
+                <li>
+                    <a href="#" class="active">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M3,13H11V3H3V13M3,21H11V15H3V21M13,21H21V11H13V21M13,3V9H21V3H13V3Z" />
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path
+                                d="M18,11H14V9H16V7H14V5H18M16,1A7,7 0 0,1 23,8A7,7 0 0,1 16,15C15.5,15 15,14.9 14.6,14.8L8,20.4L6.6,19L13.2,12.4C13.1,12 13,11.5 13,11A7,7 0 0,1 20,4A7,7 0 0,1 16,1M16,3A5,5 0 0,0 11,8A5,5 0 0,0 16,13A5,5 0 0,0 21,8A5,5 0 0,0 16,3M2,20V22H12V20H2Z" />
+                        </svg>
+                        Buses & Routes
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path
+                                d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                        </svg>
+                        Tracking
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path
+                                d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                        </svg>
+                        Students
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1>School Dashboard</h1>
+                <div class="search-container">
+                    <input type="text" placeholder="Search buses, routes, students...">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Quick Stats</h2>
+                <div class="grid">
+                    <div class="stats-card">
+                        <h3>Total Buses</h3>
+                        <p>15 Active Buses</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Active Routes</h3>
+                        <p>12 Routes</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Total Students</h3>
+                        <p>850 Students</p>
                     </div>
                 </div>
-    
-                <div class="section">
-                    <h2>Quick Stats</h2>
-                    <div class="grid">
-                        <div class="stats-card">
-                            <h3>Total Buses</h3>
-                            <p>15 Active Buses</p>
-                        </div>
-                        <div class="stats-card">
-                            <h3>Active Routes</h3>
-                            <p>12 Routes</p>
-                        </div>
-                        <div class="stats-card">
-                            <h3>Total Students</h3>
-                            <p>850 Students</p>
-                        </div>
-                    </div>
+            </div>
+
+            <div class="section">
+                <h2>Bus Fleet</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bus ID</th>
+                                <th>Number Plate</th>
+                                <th>Route</th>
+                                <th>Driver</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BUS001</td>
+                                <td>XYZ-1234</td>
+                                <td>Route A - North Side</td>
+                                <td>John Smith</td>
+                                <td><span class="status active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>BUS002</td>
+                                <td>ABC-5678</td>
+                                <td>Route B - South Side</td>
+                                <td>Mary Johnson</td>
+                                <td><span class="status active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>BUS003</td>
+                                <td>DEF-9012</td>
+                                <td>Route C - East Side</td>
+                                <td>Robert Wilson</td>
+                                <td><span class="status inactive">Maintenance</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-    
-                <div class="section">
-                    <h2>Bus Fleet</h2>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Bus ID</th>
-                                    <th>Number Plate</th>
-                                    <th>Route</th>
-                                    <th>Driver</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>BUS001</td>
-                                    <td>XYZ-1234</td>
-                                    <td>Route A - North Side</td>
-                                    <td>John Smith</td>
-                                    <td><span class="status active">Active</span></td>
-                                </tr>
-                                <tr>
-                                    <td>BUS002</td>
-                                    <td>ABC-5678</td>
-                                    <td>Route B - South Side</td>
-                                    <td>Mary Johnson</td>
-                                    <td><span class="status active">Active</span></td>
-                                </tr>
-                                <tr>
-                                    <td>BUS003</td>
-                                    <td>DEF-9012</td>
-                                    <td>Route C - East Side</td>
-                                    <td>Robert Wilson</td>
-                                    <td><span class="status inactive">Maintenance</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            </div>
+
+            <div class="section" style="display: none;">
+                <h2>Live Tracking</h2>
+                <div class="map-container" style="display: none;">
+                    Interactive map will be displayed here
                 </div>
-    
-                <div class="section" style="display: none;">
-                    <h2>Live Tracking</h2>
-                    <div class="map-container" style="display: none;">
-                        Interactive map will be displayed here
-                    </div>
-                </div>
-    
-                <div class="section">
-                    <h2>Students</h2>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student ID</th>
-                                    <th>Name</th>
-                                    <th>Grade</th>
-                                    <th>Bus Route</th>
-                                    <th>Pick-up Point</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>STU001</td>
-                                    <td>Alice Brown</td>
-                                    <td>Grade 8</td>
-                                    <td>Route A</td>
-                                    <td>Stop 3</td>
-                                </tr>
-                                <tr>
-                                    <td>STU002</td>
-                                    <td>James Wilson</td>
-                                    <td>Grade 7</td>
-                                    <td>Route B</td>
-                                    <td>Stop 2</td>
-                                </tr>
-                                <tr>
-                                    <td>STU003</td>
-                                    <td>Emily Davis</td>
-                                    <td>Grade 9</td>
-                                    <td>Route A</td>
-                                    <td>Stop 5</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            </div>
+
+            <div class="section">
+                <h2>Students</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Grade</th>
+                                <th>Bus Route</th>
+                                <th>Pick-up Point</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>STU001</td>
+                                <td>Alice Brown</td>
+                                <td>Grade 8</td>
+                                <td>Route A</td>
+                                <td>Stop 3</td>
+                            </tr>
+                            <tr>
+                                <td>STU002</td>
+                                <td>James Wilson</td>
+                                <td>Grade 7</td>
+                                <td>Route B</td>
+                                <td>Stop 2</td>
+                            </tr>
+                            <tr>
+                                <td>STU003</td>
+                                <td>Emily Davis</td>
+                                <td>Grade 9</td>
+                                <td>Route A</td>
+                                <td>Stop 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    
-        <script>
-            // Search functionality
-            const searchInput = document.querySelector('input[type="text"]');
-            const tableRows = document.querySelectorAll('tbody tr');
+    </div>
+
+    <!-- Load HERE Maps API -->
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+
+    <script>
+        // Initialize HERE Platform
+        const platform = new H.service.Platform({
+            apikey: 'iYGPG2aN0ZDx6NBCHsBPsk10Pkrl8WqUhYN2rWDGOb4' // Replace with your HERE Maps API Key
+        });
+        const defaultLayers = platform.createDefaultLayers();
+
+        // Map initialization function
+        function initializeMap(lat, lng, busId) {
             const mapContainer = document.querySelector('.map-container');
-    
-            // Initialize map section
-            mapContainer.style.display = 'none';
-            const mapSection = document.querySelector('.section:nth-child(4)'); 
-            mapSection.style.display = 'none';
-    
-            searchInput.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-                
-                tableRows.forEach(row => {
-                    const text = row.textContent.toLowerCase();
-                    row.style.display = text.includes(searchTerm) ? '' : 'none';
-                });
+            mapContainer.innerHTML = ''; // Clear previous content
+
+            const map = new H.Map(
+                mapContainer,
+                defaultLayers.vector.normal.map,
+                {
+                    center: { lat, lng },
+                    zoom: 14,
+                    pixelRatio: window.devicePixelRatio || 1
+                }
+            );
+
+            // Enable map interactions
+            const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+            const ui = H.ui.UI.createDefault(map, defaultLayers);
+
+            // Add a marker for the selected bus
+            const marker = new H.map.Marker({ lat, lng });
+            map.addObject(marker);
+
+            // Resize map on window resize
+            window.addEventListener('resize', () => map.getViewPort().resize());
+        }
+
+        // Simulated bus locations (mock data)
+        const busLocations = {
+            BUS001: { lat: -0.066277, lng: 34.774368 }, // lakebasin
+            BUS002: { lat: 34.0522, lng: -118.2437 }, // Los Angeles
+            BUS003: { lat: 40.7128, lng: -74.0060 } // New York
+        };
+
+        // Search and Bus Row Selection
+        const searchInput = document.querySelector('input[type="text"]');
+        const tableRows = document.querySelectorAll('tbody tr');
+        const mapContainer = document.querySelector('.map-container');
+        const mapSection = document.querySelector('.section:nth-child(4)');
+
+        // Hide map section initially
+        mapContainer.style.display = 'none';
+        mapSection.style.display = 'none';
+
+        // Search functionality
+        searchInput.addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            tableRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
             });
-    
-            // Navigation active state
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                });
+        });
+
+        // Bus row click functionality
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.style.cursor = 'pointer';
+            row.addEventListener('click', function () {
+                // Highlight selected bus row
+                tableRows.forEach(r => r.classList.remove('selected-bus'));
+                this.classList.add('selected-bus');
+
+                // Show map section
+                mapSection.style.display = 'block';
+                mapContainer.style.display = 'flex';
+
+                // Scroll to map section
+                mapSection.scrollIntoView({ behavior: 'smooth' });
+
+                // Get bus details
+                const busId = this.querySelector('td:first-child').textContent;
+                const route = this.querySelector('td:nth-child(3)').textContent;
+                const location = busLocations[busId];
+
+                // Display bus info and initialize map
+                if (location) {
+                    mapContainer.innerHTML = `
+                    <div class="map-info">
+                      <h3>Live Location</h3>
+                      <p>Bus: ${busId}</p>
+                      <p>Route: ${route}</p>
+                    </div>
+                  `;
+                    initializeMap(location.lat, location.lng, busId);
+                } else {
+                    mapContainer.innerHTML = `<p>Location data not available for ${busId}</p>`;
+                }
             });
-    
-            // Bus selection functionality - Fixed selector
-            const busTable = document.querySelector('.section:nth-child(3) table'); 
-            if (busTable) { 
-                busTable.querySelectorAll('tbody tr').forEach(row => {
-                    row.style.cursor = 'pointer';
-                    row.addEventListener('click', function() {
-                        // Remove active class from all rows
-                        busTable.querySelectorAll('tbody tr').forEach(r => {
-                            r.classList.remove('selected-bus');
-                        });
-                        
-                        // Add active class to clicked row
-                        this.classList.add('selected-bus');
-                        
-                        // Show map section
-                        mapSection.style.display = 'block';
-                        mapContainer.style.display = 'flex';
-                        
-                        // Scroll to map
-                        mapSection.scrollIntoView({ behavior: 'smooth' });
-    
-                        // Get bus details
-                        const busId = this.querySelector('td:first-child').textContent;
-                        const route = this.querySelector('td:nth-child(3)').textContent;
-                        
-                        // Update map container with bus info
-                        mapContainer.innerHTML = `
-                            <div class="map-info">
-                                <h3>Live Location</h3>
-                                <p>Bus: ${busId}</p>
-                                <p>Route: ${route}</p>
-                                <div class="map-placeholder">
-                                    Interactive map will be displayed here showing the location of ${busId}
-                                </div>
-                            </div>
-                        `;
-                    });
-                });
+        });
+
+        // Sidebar toggle functionality
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const sidebar = document.querySelector('.sidebar');
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar on outside click (mobile only)
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('active');
             }
-    
-            // Sidebar toggle functionality
-            const toggleBtn = document.querySelector('.toggle-btn');
-            const sidebar = document.querySelector('.sidebar');
-    
-            toggleBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('active');
+        });
+
+        // Adjust sidebar on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Navigation active state
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
             });
-    
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
-                        sidebar.classList.remove('active');
-                    }
-                }
-            });
-    
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 768) {
-                    sidebar.classList.remove('active');
-                }
-            });
-        </script>
-    </body>
-    </html>
+        });
+    </script>
+</body>
+
+</html>
