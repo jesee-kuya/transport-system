@@ -1,0 +1,3 @@
+DROP INDEX IF EXISTS idx_school_private_driver_connections_driver_id;
+DROP INDEX IF EXISTS idx_school_private_driver_connections_school_id;
+DROP TABLE IF EXISTS school_private_driver_connections;
