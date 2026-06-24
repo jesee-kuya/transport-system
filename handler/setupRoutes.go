@@ -14,5 +14,10 @@ func (t *Transport) SetupRoutes() *gin.Engine {
 		c.JSON(http.StatusOK, gin.H{"status": "ok"})
 	})
 
+	auth := router.Group("/auth")
+	{
+		auth.POST("/signup", t.SignUp)
+	}
+
 	return router
 }
