@@ -11,6 +11,8 @@ import (
 	"github.com/jesee-kuya/transport-system/database"
 	"github.com/jesee-kuya/transport-system/handler"
 	"github.com/jesee-kuya/transport-system/middleware"
+	"github.com/jesee-kuya/transport-system/repository"
+	"github.com/jesee-kuya/transport-system/service"
 )
 
 func main() {
@@ -25,10 +27,14 @@ func main() {
 	}
 	defer db.Close()
 
-	middleware := middleware.NewMiddleware()
+	authRepo := repository.NewAuthRepository(db)
+	authService := service.NewAuthService(authRepo)
+
+	mw := middleware.NewMiddleware()
 
 	t := handler.Transport{
-		Middleware: middleware,
+		Middleware:  mw,
+		AuthService: authService,
 	}
 
 	router := t.SetupRoutes()
