@@ -28,13 +28,17 @@ func main() {
 	defer db.Close()
 
 	authRepo := repository.NewAuthRepository(db)
-	authService := service.NewAuthService(authRepo)
+	authService := service.NewAuthService(authRepo, &cfg.JWT)
 
-	mw := middleware.NewMiddleware()
+	schoolRepo := repository.NewSchoolRepository(db)
+	schoolService := service.NewSchoolService(schoolRepo)
+
+	mw := middleware.NewMiddleware(&cfg.JWT)
 
 	t := handler.Transport{
-		Middleware:  mw,
-		AuthService: authService,
+		Middleware:    mw,
+		AuthService:   authService,
+		SchoolService: schoolService,
 	}
 
 	router := t.SetupRoutes()
