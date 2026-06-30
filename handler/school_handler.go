@@ -198,7 +198,15 @@ func (t *Transport) SearchStudents(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "query parameter 'q' is required"})
 		return
 	}
-	students, err := t.SchoolService.SearchStudents(c.Request.Context(), claims.UserID, q)
+	var (
+		students []*domain.Student
+		err      error
+	)
+	if claims.Role == "school_driver" {
+		students, err = t.SchoolDriverService.SearchStudents(c.Request.Context(), claims.UserID, q)
+	} else {
+		students, err = t.SchoolService.SearchStudents(c.Request.Context(), claims.UserID, q)
+	}
 	if err != nil {
 		c.JSON(schoolErrStatus(err), gin.H{"error": err.Error()})
 		return
