@@ -33,12 +33,28 @@ func main() {
 	schoolRepo := repository.NewSchoolRepository(db)
 	schoolService := service.NewSchoolService(schoolRepo)
 
+	guardianRepo := repository.NewGuardianRepository(db)
+	guardianService := service.NewGuardianService(guardianRepo)
+
+	privateParentRepo := repository.NewPrivateParentRepository(db)
+	privateParentService := service.NewPrivateParentService(privateParentRepo)
+
+	schoolDriverRepo := repository.NewSchoolDriverRepository(db)
+	schoolDriverService := service.NewSchoolDriverService(schoolDriverRepo)
+
+	privateDriverRepo := repository.NewPrivateDriverRepository(db)
+	privateDriverService := service.NewPrivateDriverService(privateDriverRepo)
+
 	mw := middleware.NewMiddleware(&cfg.JWT)
 
 	t := handler.Transport{
-		Middleware:    mw,
-		AuthService:   authService,
-		SchoolService: schoolService,
+		Middleware:           mw,
+		AuthService:          authService,
+		SchoolService:        schoolService,
+		GuardianService:      guardianService,
+		PrivateParentService: privateParentService,
+		SchoolDriverService:  schoolDriverService,
+		PrivateDriverService: privateDriverService,
 	}
 
 	router := t.SetupRoutes()
