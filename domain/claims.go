@@ -12,3 +12,8 @@ type Claims struct {
 	Role     string    `json:"role"`
 	jwt.RegisteredClaims
 }
+
+type ResetClaims struct {
+	UserID uuid.UUID `json:"user_id"`
+	jwt.RegisteredClaims
+}
