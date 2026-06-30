@@ -58,6 +58,7 @@ type PrivateParent interface {
 	CollectKYC(*gin.Context)
 	GetPrivateProfile(gin.Context)
 	AddMyChild(*gin.Context)
+	GetMyChildren(*gin.Context)
 	EditMyPrivateProfile(*gin.Context)
 	EditMyChild(*gin.Context)
 	DeleteMyAccount(*gin.Context)
