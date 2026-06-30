@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/google/uuid"
 	"github.com/jesee-kuya/transport-system/domain"
 )
 
@@ -54,4 +55,26 @@ func (r *AuthRepositoryStruct) GetUserByUsername(ctx context.Context, username s
 		return nil, fmt.Errorf("get user by username: %w", err)
 	}
 	return &user, nil
+}
+
+func (r *AuthRepositoryStruct) GetUserByID(ctx context.Context, id uuid.UUID) (*domain.User, error) {
+	var user domain.User
+	query := `SELECT id, username, email, password_hash, role, is_active, created_at, updated_at FROM users WHERE id = $1`
+	err := r.DB.GetContext(ctx, &user, query, id)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, domain.ErrNotFound
+		}
+		return nil, fmt.Errorf("get user by id: %w", err)
+	}
+	return &user, nil
+}
+
+func (r *AuthRepositoryStruct) UpdatePassword(ctx context.Context, id uuid.UUID, passwordHash string) error {
+	query := `UPDATE users SET password_hash = $1, updated_at = now() WHERE id = $2`
+	_, err := r.DB.ExecContext(ctx, query, passwordHash, id)
+	if err != nil {
+		return fmt.Errorf("update password: %w", err)
+	}
+	return nil
 }
