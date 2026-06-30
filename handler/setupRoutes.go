@@ -72,5 +72,64 @@ func (t *Transport) SetupRoutes() *gin.Engine {
 		school.GET("/private-trips/:id", t.GetPrivateTripData)
 	}
 
+	parent := router.Group("/parent")
+	parent.Use(t.Middleware.AuthMiddleware())
+	{
+		parent.POST("/kyc", t.CollectKYC)
+		parent.GET("/profile", func(c *gin.Context) { t.GetPrivateProfile(*c) })
+		parent.PUT("/profile", t.EditMyPrivateProfile)
+		parent.DELETE("/account", t.DeleteMyAccount)
+
+		parent.POST("/children", t.AddMyChild)
+		parent.GET("/children", t.GetMyChildren)
+		parent.PUT("/children/:id", t.EditMyChild)
+
+		parent.POST("/drivers/match", t.MatchWithDriver)
+		parent.POST("/schools/connect", t.ConnectWithSchool)
+
+		// Static paths before param paths
+		parent.GET("/schools", t.GetSchools)
+		parent.GET("/schools/search", t.SearchSchools)
+		parent.GET("/schools/filter", t.FilterSchools)
+		parent.GET("/schools/:id", t.GetSchool)
+
+		parent.GET("/trips", t.GetTrips)
+		parent.GET("/trips/:id/track", t.TrackTrip)
+		parent.PATCH("/trips/:id/boarding", t.ConfirmStudentBoarding)
+		parent.PATCH("/trips/:id/receive", t.ReceiveStudent)
+	}
+
+	privateDriver := router.Group("/private-driver")
+	privateDriver.Use(t.Middleware.AuthMiddleware())
+	{
+		privateDriver.POST("/kyc", t.KYCDriver)
+		privateDriver.PATCH("/matches/:id", t.MatchWithParent)
+		privateDriver.POST("/trips", t.StartTrip)
+		privateDriver.PATCH("/trips/:id/end", t.EndTrip)
+		privateDriver.POST("/trips/:id/students", t.OnboardPrivateStudent)
+		privateDriver.PATCH("/trips/:id/status", t.UpdatePrivateTripStatus)
+	}
+
+	schoolDriver := router.Group("/school-driver")
+	schoolDriver.Use(t.Middleware.AuthMiddleware())
+	{
+		schoolDriver.GET("/students/search", t.SearchStudents)
+		schoolDriver.POST("/trips", t.StartTrip)
+		schoolDriver.PATCH("/trips/:id/end", t.EndTrip)
+		schoolDriver.PATCH("/trips/:id/status", t.UpdateTripStatus)
+		schoolDriver.POST("/trips/:id/students", t.OnboardStudent)
+		schoolDriver.GET("/trips/:id/students", t.ViewBoardedStudents)
+	}
+
+	guardian := router.Group("/guardian")
+	guardian.Use(t.Middleware.AuthMiddleware())
+	{
+		guardian.GET("/profile", t.GetMyProfile)
+		guardian.PUT("/profile", t.EditMyProfile)
+		guardian.GET("/students", t.GetMyStudents)
+		guardian.GET("/students/:id", t.GetMyStudent)
+		guardian.GET("/students/:id/track", t.TrackMyStudent)
+	}
+
 	return router
 }
