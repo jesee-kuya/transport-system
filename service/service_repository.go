@@ -15,6 +15,52 @@ type Authentication interface {
 	ResetPassword(ctx context.Context, req *domain.ResetPasswordRequest) error
 }
 
+type PrivateDriverService interface {
+	KYCDriver(ctx context.Context, userID uuid.UUID, req *domain.KYCDriverRequest) (*domain.PrivateDriver, error)
+	MatchWithParent(ctx context.Context, userID uuid.UUID, matchID uuid.UUID, req *domain.RespondToMatchRequest) (*domain.DriverParentMatch, error)
+	OnboardPrivateStudent(ctx context.Context, userID uuid.UUID, tripID uuid.UUID, req *domain.OnboardPrivateStudentRequest) (*domain.PrivateTripChild, error)
+	StartTrip(ctx context.Context, userID uuid.UUID, req *domain.StartPrivateTripRequest) (*domain.PrivateTrip, error)
+	EndTrip(ctx context.Context, userID uuid.UUID, tripID uuid.UUID) (*domain.PrivateTrip, error)
+	UpdatePrivateTripStatus(ctx context.Context, userID uuid.UUID, tripID uuid.UUID, req *domain.UpdatePrivateTripStatusRequest) (*domain.PrivateTrip, error)
+}
+
+type SchoolDriverService interface {
+	SearchStudents(ctx context.Context, userID uuid.UUID, query string) ([]*domain.Student, error)
+	OnboardStudent(ctx context.Context, userID uuid.UUID, tripID uuid.UUID, studentID uuid.UUID) (*domain.TripStudent, error)
+	StartTrip(ctx context.Context, userID uuid.UUID, req *domain.StartTripRequest) (*domain.Trip, error)
+	EndTrip(ctx context.Context, userID uuid.UUID, tripID uuid.UUID) (*domain.Trip, error)
+	UpdateTripStatus(ctx context.Context, userID uuid.UUID, tripID uuid.UUID, req *domain.UpdateTripStatusRequest) (*domain.Trip, error)
+	ViewBoardedStudents(ctx context.Context, userID uuid.UUID, tripID uuid.UUID) ([]*domain.Student, error)
+}
+
+type PrivateParentService interface {
+	CollectKYC(ctx context.Context, userID uuid.UUID, req *domain.CollectKYCRequest) (*domain.PrivateParent, error)
+	GetPrivateProfile(ctx context.Context, userID uuid.UUID) (*domain.PrivateParent, error)
+	AddMyChild(ctx context.Context, userID uuid.UUID, req *domain.AddPrivateChildRequest) (*domain.PrivateChild, error)
+	GetMyChildren(ctx context.Context, userID uuid.UUID) ([]*domain.PrivateChild, error)
+	EditMyPrivateProfile(ctx context.Context, userID uuid.UUID, req *domain.EditPrivateProfileRequest) (*domain.PrivateParent, error)
+	EditMyChild(ctx context.Context, userID uuid.UUID, childID uuid.UUID, req *domain.EditPrivateChildRequest) (*domain.PrivateChild, error)
+	DeleteMyAccount(ctx context.Context, userID uuid.UUID) error
+	MatchWithDriver(ctx context.Context, userID uuid.UUID, req *domain.MatchWithDriverRequest) (*domain.DriverParentMatch, error)
+	ConnectWithSchool(ctx context.Context, userID uuid.UUID, req *domain.ConnectWithSchoolRequest) (*domain.ParentSchoolConnection, error)
+	GetSchools(ctx context.Context) ([]*domain.School, error)
+	SearchSchools(ctx context.Context, query string) ([]*domain.School, error)
+	FilterSchools(ctx context.Context, address string) ([]*domain.School, error)
+	GetSchool(ctx context.Context, schoolID uuid.UUID) (*domain.School, error)
+	ReceiveStudent(ctx context.Context, userID uuid.UUID, tripID uuid.UUID) (*domain.PrivateTrip, error)
+	ConfirmStudentBoarding(ctx context.Context, userID uuid.UUID, tripID uuid.UUID) (*domain.PrivateTrip, error)
+	GetTrips(ctx context.Context, userID uuid.UUID) ([]*domain.PrivateTrip, error)
+	TrackTrip(ctx context.Context, userID uuid.UUID, tripID uuid.UUID) (*domain.PrivateTrip, error)
+}
+
+type GuardianService interface {
+	GetMyStudents(ctx context.Context, userID uuid.UUID) ([]*domain.Student, error)
+	GetMyStudent(ctx context.Context, userID uuid.UUID, studentID uuid.UUID) (*domain.Student, error)
+	TrackMyStudent(ctx context.Context, userID uuid.UUID, studentID uuid.UUID) (*domain.Trip, error)
+	GetMyProfile(ctx context.Context, userID uuid.UUID) (*domain.Guardian, error)
+	EditMyProfile(ctx context.Context, userID uuid.UUID, req *domain.EditGuardianProfileRequest) (*domain.Guardian, error)
+}
+
 type SchoolService interface {
 	AddMySchool(ctx context.Context, adminID uuid.UUID, req *domain.AddSchoolRequest) (*domain.School, error)
 

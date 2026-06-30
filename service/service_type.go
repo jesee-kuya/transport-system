@@ -13,3 +13,19 @@ type AuthService struct {
 type SchoolSvc struct {
 	SchoolRepo repository.SchoolRepository
 }
+
+type GuardianSvc struct {
+	GuardianRepo repository.GuardianRepository
+}
+
+type PrivateParentSvc struct {
+	ParentRepo repository.PrivateParentRepository
+}
+
+type SchoolDriverSvc struct {
+	DriverRepo repository.SchoolDriverRepository
+}
+
+type PrivateDriverSvc struct {
+	DriverRepo repository.PrivateDriverRepository
+}
