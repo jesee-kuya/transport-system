@@ -81,3 +81,77 @@ type EditDriverRequest struct {
 type ConnectPrivateDriverRequest struct {
 	DriverID string `json:"driver_id" binding:"required,uuid"`
 }
+
+type EditGuardianProfileRequest struct {
+	FirstName string `json:"first_name" binding:"required"`
+	LastName  string `json:"last_name" binding:"required"`
+	Phone     string `json:"phone"`
+}
+
+type CollectKYCRequest struct {
+	FirstName string `json:"first_name" binding:"required"`
+	LastName  string `json:"last_name" binding:"required"`
+	Phone     string `json:"phone" binding:"required"`
+}
+
+type EditPrivateProfileRequest struct {
+	FirstName string `json:"first_name" binding:"required"`
+	LastName  string `json:"last_name" binding:"required"`
+	Phone     string `json:"phone" binding:"required"`
+}
+
+type AddPrivateChildRequest struct {
+	FirstName string `json:"first_name" binding:"required"`
+	LastName  string `json:"last_name" binding:"required"`
+	Grade     string `json:"grade"`
+}
+
+type EditPrivateChildRequest struct {
+	FirstName string `json:"first_name" binding:"required"`
+	LastName  string `json:"last_name" binding:"required"`
+	Grade     string `json:"grade"`
+}
+
+type MatchWithDriverRequest struct {
+	DriverID string `json:"driver_id" binding:"required,uuid"`
+}
+
+type ConnectWithSchoolRequest struct {
+	SchoolID string `json:"school_id" binding:"required,uuid"`
+}
+
+type StartTripRequest struct {
+	BusID    string `json:"bus_id" binding:"required,uuid"`
+	TripType string `json:"trip_type" binding:"required"`
+}
+
+type OnboardStudentRequest struct {
+	StudentID string `json:"student_id" binding:"required,uuid"`
+}
+
+type UpdateTripStatusRequest struct {
+	Status string `json:"status" binding:"required"`
+}
+
+type KYCDriverRequest struct {
+	FirstName     string `json:"first_name" binding:"required"`
+	LastName      string `json:"last_name" binding:"required"`
+	Phone         string `json:"phone" binding:"required"`
+	LicenseNumber string `json:"license_number" binding:"required"`
+}
+
+type RespondToMatchRequest struct {
+	Status string `json:"status" binding:"required,oneof=accepted rejected"`
+}
+
+type OnboardPrivateStudentRequest struct {
+	ChildID string `json:"child_id" binding:"required,uuid"`
+}
+
+type StartPrivateTripRequest struct {
+	MatchID string `json:"match_id" binding:"required,uuid"`
+}
+
+type UpdatePrivateTripStatusRequest struct {
+	Status string `json:"status" binding:"required"`
+}
