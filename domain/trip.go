@@ -19,6 +19,13 @@ type Trip struct {
 	UpdatedAt time.Time  `db:"updated_at" json:"updated_at"`
 }
 
+type TripStudent struct {
+	ID        uuid.UUID `db:"id" json:"id"`
+	TripID    uuid.UUID `db:"trip_id" json:"trip_id"`
+	StudentID uuid.UUID `db:"student_id" json:"student_id"`
+	BoardedAt time.Time `db:"boarded_at" json:"boarded_at"`
+}
+
 type PrivateTrip struct {
 	ID        uuid.UUID  `db:"id" json:"id"`
 	DriverID  uuid.UUID  `db:"driver_id" json:"driver_id"`
