@@ -6,6 +6,7 @@ import (
 )
 
 type Transport struct {
-	Middleware  middleware.Middleware
-	AuthService service.Authentication
+	Middleware    middleware.Middleware
+	AuthService   service.Authentication
+	SchoolService service.SchoolService
 }
